@@ -1,132 +1,299 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belay Platform - Learning & Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belay Kassanew - CS & Health Student</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== GENERAL SETTINGS ===== */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(120deg,#a18cd1,#fbc2eb);
+    color: #333;
+    overflow-x: hidden;
+}
 
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- CSS -->
-    <link rel="stylesheet" href="static/css/style.css">
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 30px;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    color: #2E8B57;
+}
+
+header p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* ===== NAVIGATION ===== */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #2E8B57;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+nav a:hover, nav a.active {
+    background-color: #3CB371;
+    border-radius: 8px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    display: none; /* hidden by default */
+    margin-bottom: 50px;
+    padding: 30px;
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: all 0.5s ease;
+}
+
+section.active {
+    display: block; /* show only active section */
+}
+
+/* ===== ABOUT & LEARNING ===== */
+.about-box, .learning-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.about-box img {
+    width: 200px;
+    border-radius: 15px;
+    border: 3px solid #2E8B57;
+}
+
+/* ===== COURSES ===== */
+.course-card {
+    background: #e0f7f1;
+    padding: 20px;
+    margin: 10px;
+    border-left: 5px solid #2E8B57;
+    border-radius: 12px;
+    flex: 1 1 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.course-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== YOUTUBE VIDEO ===== */
+.youtube-section iframe {
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+}
+
+/* ===== LOGIN & REGISTER ===== */
+.login-register {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.login-register div {
+    flex: 1 1 400px;
+    background: #f3f7f3;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* ===== CONTACT FORM ===== */
+form input, form textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #bbb;
+}
+
+form button {
+    background: linear-gradient(45deg,#2E8B57,#3CB371);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: #2E8B57;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: #2E8B57;
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 768px){
+    .about-box, .learning-box, .login-register {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav {
+        flex-wrap: wrap;
+    }
+}
+</style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="header-container">
-            <h1>Belay Kassanew</h1>
-            <p>Computer Science & Health Student | Educator | IoT Enthusiast</p>
-            <div class="header-buttons">
-                <a href="#about" class="btn btn-gradient">About Me</a>
-                <a href="#learning" class="btn btn-gradient">Learning</a>
-            </div>
-        </div>
-    </header>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#learning">Courses</a>
-        <a href="#youtube">YouTube</a>
-        <a href="#dashboard">Dashboard</a>
-        <a href="#contact">Contact</a>
-    </nav>
+<div class="container">
 
-    <!-- HOME SECTION -->
-    <section class="section" id="home">
-        <div class="intro-box">
-            <img src="static/images/belay.jpg" class="profile-image" alt="Belay Kassanew">
-            <div class="intro-text">
-                <h2>Welcome!</h2>
-                <p>Hello! I’m Belay Kassanew. I teach programming, health science, and IoT projects. Explore courses, videos, and projects below!</p>
-            </div>
-        </div>
-        <div class="floating-icons">
-            <i class="fas fa-heartbeat floating-icon" id="icon1"></i>
-            <i class="fas fa-laptop-code floating-icon" id="icon2"></i>
-            <i class="fas fa-book-medical floating-icon" id="icon3"></i>
-            <i class="fas fa-robot floating-icon" id="icon4"></i>
-            <i class="fas fa-lightbulb floating-icon" id="icon5"></i>
-        </div>
-    </section>
+<header>
+    <h1>Belay Kassanew</h1>
+    <p>Computer Science & Health Student | Educator | IoT Enthusiast</p>
+</header>
 
-    <!-- ABOUT SECTION -->
-    <section class="section" id="about">
-        <h2>About Me</h2>
+<nav>
+    <a class="nav-link active" data-target="home">Home</a>
+    <a class="nav-link" data-target="about">About Me</a>
+    <a class="nav-link" data-target="learning">Courses</a>
+    <a class="nav-link" data-target="youtube">YouTube</a>
+    <a class="nav-link" data-target="dashboard">Dashboard</a>
+    <a class="nav-link" data-target="contact">Contact</a>
+</nav>
+
+<section id="home" class="active">
+    <h2>Welcome!</h2>
+    <p>Hello! I’m Belay Kassanew. I teach programming, health science, and IoT projects. Explore courses, videos, and projects below!</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <div class="about-box">
+        <img src="belay.jpg" alt="Belay Kassanew">
         <p>I’m a Computer Science and Public Health student. I love programming, IoT, and helping students learn online. I work on research projects and software systems that combine health and technology.</p>
-    </section>
+    </div>
+</section>
 
-    <!-- COURSES SECTION -->
-    <section class="section" id="learning">
-        <h2>Learning Courses</h2>
-        <div class="course-grid">
-            <div class="course-card">
-                <h3>Health Science</h3>
-                <p>Explore epidemiology, public health, and medical statistics with detailed notes and projects.</p>
-            </div>
-            <div class="course-card">
-                <h3>Programming & CS</h3>
-                <p>Learn Python, JavaScript, Flask, HTML/CSS, and IoT project development.</p>
-            </div>
-            <div class="course-card">
-                <h3>Remedial & Freshman</h3>
-                <p>Structured notes and tutorials for students starting or reviewing courses.</p>
-            </div>
-            <div class="course-card">
-                <h3>Grade 12 & Pre-University</h3>
-                <p>Advanced topics, quizzes, and exam prep materials for high school students.</p>
-            </div>
+<section id="learning">
+    <h2>Learning Courses</h2>
+    <div class="learning-box">
+        <div class="course-card">
+            <h3>Health Science</h3>
+            <p>Epidemiology, public health, medical statistics, and projects.</p>
         </div>
-    </section>
-
-    <!-- YOUTUBE SECTION -->
-    <section class="section" id="youtube">
-        <h2>My YouTube Videos</h2>
-        <div class="video-container">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/DHAD3JuETfs" 
-                title="YouTube video player" frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen></iframe>
+        <div class="course-card">
+            <h3>Programming & CS</h3>
+            <p>Python, JavaScript, Flask, HTML/CSS, IoT projects.</p>
         </div>
-    </section>
-
-    <!-- DASHBOARD SECTION -->
-    <section class="section" id="dashboard">
-        <h2>Student Dashboard</h2>
-        <p>Login to access your courses, upload files, or download notes.</p>
-        <div class="dashboard-buttons">
-            <a href="/login" class="btn btn-gradient">Login</a>
-            <a href="/register" class="btn btn-gradient">Register</a>
+        <div class="course-card">
+            <h3>Remedial & Freshman</h3>
+            <p>Structured notes and tutorials for beginners.</p>
         </div>
-    </section>
-
-    <!-- CONTACT FORM -->
-    <section class="section" id="contact">
-        <h2>Contact Me</h2>
-        <form id="contactForm">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message"></textarea>
-            <button type="submit" class="btn btn-gradient">Send Message</button>
-            <p id="formStatus"></p>
-        </form>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Belay Kassanew — All Rights Reserved</p>
-        <div class="social-icons">
-            <a href="https://www.facebook.com/belaykassanew.wasie" class="facebook"><i class="fab fa-facebook"></i></a>
-            <a href="https://www.linkedin.com/in/belay-kassanew-54743720a" class="linkedin"><i class="fab fa-linkedin"></i></a>
-            <a href="#" class="youtube"><i class="fab fa-youtube"></i></a>
-            <a href="#" class="telegram"><i class="fab fa-telegram"></i></a>
+        <div class="course-card">
+            <h3>Grade 12 & Pre-University</h3>
+            <p>Advanced topics, quizzes, and exam preparation.</p>
         </div>
-    </footer>
+    </div>
+</section>
 
-    <!-- JS -->
-    <script src="static/js/script.js"></script>
+<section id="youtube">
+    <h2>My YouTube Video</h2>
+    <div class="youtube-section">
+        <iframe src="https://www.youtube.com/embed/DHAD3JuETfs" frameborder="0" allowfullscreen></iframe>
+    </div>
+</section>
+
+<section id="dashboard">
+    <h2>Student Dashboard</h2>
+    <div class="login-register">
+        <div>
+            <h3>Login</h3>
+            <form>
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <button>Login</button>
+            </form>
+        </div>
+        <div>
+            <h3>Register</h3>
+            <form>
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button>Register</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Contact Me</h2>
+    <form>
+        <input type="text" placeholder="Your Name">
+        <input type="email" placeholder="Your Email">
+        <textarea placeholder="Your Message"></textarea>
+        <button>Send Message</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 Belay Kassanew — All Rights Reserved</p>
+</footer>
+
+</div> <!-- End container -->
+
+<script>
+// Section toggle
+const links = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section');
+
+links.forEach(link => {
+    link.addEventListener('click', () => {
+        // Remove active from all links
+        links.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        // Hide all sections
+        sections.forEach(s => s.classList.remove('active'));
+
+        // Show target section
+        const target = link.dataset.target;
+        document.getElementById(target).classList.add('active');
+    });
+});
+</script>
+
 </body>
 </html>
