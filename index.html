@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Belay Learning Platform</title>
+
+<link rel="stylesheet" href="/static/css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+<!-- ===== HEADER / HOME ===== -->
+<header id="home">
+    <h1>Belay Kassanew</h1>
+    <p>CS & Public Health Student | Educator | Researcher</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#videos">Videos</a>
+    <a href="#programming">Programming</a>
+    <a href="#health">Health</a>
+    <a href="#upload">Submit Work</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+    <h2>About Me</h2>
+    <div class="intro-box">
+        <img src="/static/images/belay.jpg" class="profile-image">
+        <p>
+            I am <strong>Belay Kassanew</strong>, a Computer Science and Public Health student.
+            This platform is built for <b>online teaching, student support, research collaboration,
+            and software projects</b>.
+        </p>
+    </div>
+</section>
+
+<!-- ===== YOUTUBE TEACHING ===== -->
+<section class="section" id="videos">
+    <h2>Online Teaching – Keleme Tube</h2>
+    <p>Educational content for students.</p>
+
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/DHAD3JuETfs"
+                title="Keleme Tube" allowfullscreen></iframe>
+    </div>
+</section>
+
+<!-- ===== PROGRAMMING ===== -->
+<section class="section" id="programming">
+    <h2>Programming Courses</h2>
+    <ul>
+        <li>Web Development (HTML, CSS, JS)</li>
+        <li>Python & Flask Projects</li>
+        <li>IoT Systems</li>
+        <li>Software Engineering</li>
+    </ul>
+</section>
+
+<!-- ===== HEALTH ===== -->
+<section class="section" id="health">
+    <h2>Health Science Learning</h2>
+    <ul>
+        <li>Public Health</li>
+        <li>Epidemiology</li>
+        <li>Health Data Analysis</li>
+        <li>Research Methods</li>
+    </ul>
+</section>
+
+<!-- ===== STUDENT FILE SUBMISSION ===== -->
+<section class="section" id="upload">
+    <h2>Submit Assignment / File</h2>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="student_file" required>
+        <button class="btn">Upload</button>
+    </form>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section" id="contact">
+    <h2>Contact Me</h2>
+    <form method="POST" action="/message">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button class="btn">Send</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2025 Belay Kassanew – Learning Platform</p>
+</footer>
+
+<script src="/static/js/script.js"></script>
+</body>
+</html>
