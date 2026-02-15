@@ -30,6 +30,46 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+// ===== SMOOTH SCROLL & ACTIVE NAV =====
+const navLinks = document.querySelectorAll('nav a');
+const sections = document.querySelectorAll('section');
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById(link.dataset.target).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => link.classList.remove('active'));
+    document.querySelector(`nav a[data-target="${current}"]`)?.classList.add('active');
+});
+
+// ===== FADE IN SECTIONS =====
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.2 });
+sections.forEach(section => observer.observe(section));
+
+// ===== COURSE FILTER =====
+const filterButtons = document.querySelectorAll('.filter-btn');
+const courseCards = document.querySelectorAll('.course-card');
+filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+        courseCards.forEach(card => {
+            card.style.display = (category === 'all' || card.classList.contains(category)) ? 'block' : 'none';
+        });
+    });
+});
 
 // ===== SCROLL ANIMATION (FADE-IN / SLIDE-IN) =====
 const observer = new IntersectionObserver(entries => {
