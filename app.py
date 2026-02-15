@@ -146,6 +146,153 @@ def admin_dashboard():
     courses = c.fetchall()
     conn.close()
     return render_template('admin.html', courses=courses)
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from werkzeug.security import generate_password_hash, check_password_hash
+import sqlite3
+import os
+
+app = Flask(__name__)
+app.secret_key = 'supersecretkey'
+UPLOAD_FOLDER = 'uploads'
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+DB_NAME = "academy.db"
+
+# ===== DATABASE INITIALIZATION =====
+def init_db():
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    # Users Table
+    c.execute('''CREATE TABLE IF NOT EXISTS users(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT UNIQUE,
+        username TEXT UNIQUE,
+        password TEXT,
+        role TEXT,
+        subscription TEXT DEFAULT "free"
+    )''')
+    # Messages Table
+    c.execute('''CREATE TABLE IF NOT EXISTS messages(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
+        email TEXT,
+        message TEXT
+    )''')
+    # Courses Table
+    c.execute('''CREATE TABLE IF NOT EXISTS courses(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT,
+        category TEXT,
+        hours TEXT,
+        description TEXT
+    )''')
+    # Files Table
+    c.execute('''CREATE TABLE IF NOT EXISTS files(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        filename TEXT,
+        uploader TEXT
+    )''')
+    conn.commit()
+    conn.close()
+
+init_db()
+
+# ===== ROUTES =====
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+# ===== REGISTER =====
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.form
+    name = data.get('name')
+    email = data.get('email')
+    username = data.get('username')
+    password = generate_password_hash(data.get('password'))
+    role = 'student'
+    try:
+        conn = sqlite3.connect(DB_NAME)
+        c = conn.cursor()
+        c.execute("INSERT INTO users(name,email,username,password,role) VALUES(?,?,?,?,?)",
+                  (name,email,username,password,role))
+        conn.commit()
+        return jsonify({'status':'success','message':'Registered successfully!'})
+    except sqlite3.IntegrityError:
+        return jsonify({'status':'error','message':'Username or email already exists!'})
+    finally:
+        conn.close()
+
+# ===== LOGIN =====
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.form
+    username = data.get('username')
+    password = data.get('password')
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("SELECT * FROM users WHERE username=?", (username,))
+    user = c.fetchone()
+    conn.close()
+    if user and check_password_hash(user[4], password):
+        session['username'] = user[3]
+        session['role'] = user[5]
+        return jsonify({'status':'success','message':f'Welcome back, {username}!'})
+    return jsonify({'status':'error','message':'Invalid username or password'})
+
+# ===== LOGOUT =====
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+# ===== CONTACT FORM =====
+@app.route('/contact', methods=['POST'])
+def contact():
+    data = request.form
+    name = data.get('name')
+    email = data.get('email')
+    message = data.get('message')
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("INSERT INTO messages(name,email,message) VALUES(?,?,?)",(name,email,message))
+    conn.commit()
+    conn.close()
+    return jsonify({'status':'success','message':'Message sent successfully!'})
+
+# ===== FILE UPLOAD =====
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if 'file' not in request.files:
+        return jsonify({'status':'error','message':'No file part'})
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'status':'error','message':'No selected file'})
+    filename = file.filename
+    file.save(os.path.join(UPLOAD_FOLDER, filename))
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("INSERT INTO files(filename,uploader) VALUES (?,?)",(filename,session.get('username','anonymous')))
+    conn.commit()
+    conn.close()
+    return jsonify({'status':'success','message':'File uploaded successfully!'})
+
+# ===== COURSES API =====
+@app.route('/courses')
+def courses():
+    conn = sqlite3.connect(DB_NAME)
+    c = conn.cursor()
+    c.execute("SELECT * FROM courses")
+    courses = c.fetchall()
+    conn.close()
+    return jsonify(courses)
+
+# ===== RUN SERVER =====
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # ADD COURSE
 @app.route('/add_course', methods=['POST'])
