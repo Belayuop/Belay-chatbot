@@ -2,7 +2,7 @@
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    background: #f5f5f5; /* softer off-white for readability */
+    background: #f8f8f8;
     color: #222;
     scroll-behavior: smooth;
     line-height: 1.6;
@@ -12,8 +12,8 @@ body {
 header {
     text-align: center;
     padding: 80px 20px;
-    background: linear-gradient(135deg, #8B0000, #a10000); /* Harvard-inspired gradient */
-    color: #fff;
+    background: #8B0000; /* Harvard Crimson */
+    color: white;
 }
 
 header h1 {
@@ -57,10 +57,9 @@ nav a.active {
 
 /* ===== SECTIONS ===== */
 section {
-    padding: 80px 20px;
-    max-width: 1100px;
+    padding: 60px 20px;
+    max-width: 1200px;
     margin: auto;
-    border-bottom: 1px solid #ddd;
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s ease;
@@ -75,8 +74,8 @@ section.visible {
 h2 {
     color: #8B0000;
     margin-bottom: 25px;
-    font-size: 2.2rem;
-    border-bottom: 2px solid #8B0000;
+    font-size: 2rem;
+    border-bottom: 2px solid #6a006a; /* subtle purple accent */
     display: inline-block;
     padding-bottom: 5px;
 }
@@ -84,25 +83,25 @@ h2 {
 /* ===== COURSE CARDS ===== */
 .course-card {
     background: #fff;
-    padding: 30px 25px;
-    margin: 20px 0;
-    border-left: 6px solid #8B0000;
+    padding: 25px 20px;
+    margin: 15px 0;
+    border-left: 6px solid #6a006a; /* purple accent border */
     border-radius: 8px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    transition: all 0.4s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
 }
 
 .course-card:hover {
     transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
 }
 
 /* ===== BUTTONS ===== */
 button {
-    background: linear-gradient(135deg, #8B0000, #a10000);
+    background: #8B0000;
     color: white;
     border: none;
-    padding: 14px 32px;
+    padding: 12px 28px;
     cursor: pointer;
     font-weight: bold;
     font-size: 1rem;
@@ -131,8 +130,8 @@ form textarea {
 form input:focus,
 form textarea:focus {
     outline: none;
-    border-color: #8B0000;
-    box-shadow: 0 0 6px rgba(139,0,0,0.3);
+    border-color: #6a006a; /* purple accent */
+    box-shadow: 0 0 6px rgba(106,0,106,0.3);
 }
 
 /* ===== FOOTER ===== */
@@ -145,6 +144,29 @@ footer {
     letter-spacing: 0.5px;
 }
 
+/* ===== COURSE LIST TABLE ===== */
+.course-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+}
+
+.course-list th,
+.course-list td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.course-list th {
+    background: #f2f2f2;
+    color: #8B0000;
+    text-align: left;
+}
+
+.course-list tr:hover {
+    background: #f5f0ff; /* light purple highlight */
+}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width: 768px) {
     nav {
@@ -153,5 +175,9 @@ footer {
 
     .course-card {
         margin: 20px auto;
+    }
+
+    .course-list th, .course-list td {
+        padding: 10px;
     }
 }
