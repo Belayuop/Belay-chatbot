@@ -21,7 +21,67 @@ if(isset($_POST['login'])){
             $_SESSION['trial_end']=$user['trial_end'];
         } else $error="Invalid password!";
     } else $error="User not found!";
+}<?php
+session_start();
+$host = "localhost";
+$user = "root";
+$password = "";
+$dbname = "academy";
+$conn = new mysqli($host,$user,$password,$dbname);
+if($conn->connect_error) die("DB error ".$conn->connect_error);
+
+// ===== LOGIN =====
+if(isset($_POST['login'])){
+    $username=$_POST['username'];
+    $password=$_POST['password'];
+    $stmt=$conn->prepare("SELECT * FROM users WHERE username=?");
+    $stmt->bind_param("s",$username);
+    $stmt->execute();
+    $res=$stmt->get_result();
+    if($res->num_rows>0){
+        $row=$res->fetch_assoc();
+        if(password_verify($password,$row['password'])){
+            $_SESSION['username']=$row['username'];
+            $_SESSION['role']=$row['role'];
+            $success="Login successful!";
+        } else $error="Invalid password!";
+    } else $error="User not found!";
 }
+
+// ===== REGISTER =====
+if(isset($_POST['register'])){
+    $name=$_POST['name'];
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $password=password_hash($_POST['password'],PASSWORD_DEFAULT);
+    $role='student';
+    $stmt=$conn->prepare("INSERT INTO users(name,email,username,password,role) VALUES(?,?,?,?,?)");
+    $stmt->bind_param("sssss",$name,$email,$username,$password,$role);
+    if($stmt->execute()) $success="Registered successfully! Login now.";
+    else $error="Registration failed!";
+}
+
+// ===== LOGOUT =====
+if(isset($_GET['logout'])){ session_destroy(); header("Location:index.php"); exit; }
+
+// ===== CONTACT =====
+if(isset($_POST['contact'])){
+    $name=$_POST['name']; $email=$_POST['email']; $message=$_POST['message'];
+    $stmt=$conn->prepare("INSERT INTO messages(name,email,message) VALUES(?,?,?)");
+    $stmt->bind_param("sss",$name,$email,$message);
+    $stmt->execute();
+    $success="Message sent!";
+}
+
+// ===== FILE UPLOAD =====
+if(isset($_POST['upload'])){
+    $target_dir="uploads/";
+    $target_file=$target_dir.basename($_FILES["file"]["name"]);
+    if(move_uploaded_file($_FILES["file"]["tmp_name"],$target_file)) $success="File uploaded!";
+    else $error="Upload error!";
+}
+?>
+
 
 // ===== REGISTER =====
 if(isset($_POST['register'])){
