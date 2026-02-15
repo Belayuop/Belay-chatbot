@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Belay Kassanew - CS & Health Student</title>
+<title>Habesha Digital Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-/* ===== GENERAL SETTINGS ===== */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(120deg,#a18cd1,#fbc2eb);
+    background: linear-gradient(120deg,#1f4037,#99f2c8);
     color: #333;
-    overflow-x: hidden;
 }
 
 .container {
@@ -21,32 +20,29 @@ body {
     padding: 20px 30px;
 }
 
-/* ===== HEADER ===== */
 header {
     text-align: center;
     padding: 40px 20px;
+    color: white;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
-    color: #2E8B57;
+    font-size: 2.8rem;
 }
 
 header p {
-    margin-top: 10px;
     font-size: 1.2rem;
-    color: #555;
 }
 
-/* ===== NAVIGATION ===== */
+/* NAVIGATION */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #2E8B57;
+    background-color: #14532d;
     border-radius: 10px;
     margin-bottom: 30px;
-    overflow-x: auto;
+    flex-wrap: wrap;
 }
 
 nav a {
@@ -54,83 +50,44 @@ nav a {
     text-decoration: none;
     padding: 15px 25px;
     font-weight: bold;
-    transition: 0.3s;
     cursor: pointer;
 }
 
 nav a:hover, nav a.active {
-    background-color: #3CB371;
+    background-color: #22c55e;
     border-radius: 8px;
 }
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 section {
-    display: none; /* hidden by default */
+    display: none;
     margin-bottom: 50px;
     padding: 30px;
     border-radius: 15px;
     background: #fff;
     box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    transition: all 0.5s ease;
 }
 
 section.active {
-    display: block; /* show only active section */
+    display: block;
 }
 
-/* ===== ABOUT & LEARNING ===== */
-.about-box, .learning-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.about-box img {
-    width: 200px;
-    border-radius: 15px;
-    border: 3px solid #2E8B57;
-}
-
-/* ===== COURSES ===== */
+/* COURSES */
 .course-card {
-    background: #e0f7f1;
+    background: #ecfdf5;
     padding: 20px;
-    margin: 10px;
-    border-left: 5px solid #2E8B57;
+    margin: 15px;
+    border-left: 5px solid #16a34a;
     border-radius: 12px;
     flex: 1 1 250px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: 0.3s;
 }
 
-.course-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-/* ===== YOUTUBE VIDEO ===== */
-.youtube-section iframe {
-    width: 100%;
-    height: 500px;
-    border-radius: 15px;
-}
-
-/* ===== LOGIN & REGISTER ===== */
-.login-register {
+.learning-box {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
 }
 
-.login-register div {
-    flex: 1 1 400px;
-    background: #f3f7f3;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-/* ===== CONTACT FORM ===== */
+/* FORMS */
 form input, form textarea {
     width: 100%;
     padding: 12px;
@@ -140,126 +97,88 @@ form input, form textarea {
 }
 
 form button {
-    background: linear-gradient(45deg,#2E8B57,#3CB371);
+    background: #16a34a;
     color: white;
     border: none;
     padding: 12px 25px;
     border-radius: 25px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-form button:hover {
-    background: #2E8B57;
-}
-
-/* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding: 25px;
-    background-color: #2E8B57;
+    padding: 20px;
+    background-color: #14532d;
     color: white;
     border-radius: 15px 15px 0 0;
 }
-
-/* ===== RESPONSIVE ===== */
-@media(max-width: 768px){
-    .about-box, .learning-box, .login-register {
-        flex-direction: column;
-        align-items: center;
-    }
-    nav {
-        flex-wrap: wrap;
-    }
-}
 </style>
 </head>
-<body>
 
+<body>
 <div class="container">
 
 <header>
-    <h1>Belay Kassanew</h1>
-    <p>Computer Science & Health Student | Educator | IoT Enthusiast</p>
+    <h1>Habesha Digital Academy</h1>
+    <p>Empowering Minds Through Digital Education in Ethiopia</p>
 </header>
 
 <nav>
     <a class="nav-link active" data-target="home">Home</a>
-    <a class="nav-link" data-target="about">About Me</a>
-    <a class="nav-link" data-target="learning">Courses</a>
-    <a class="nav-link" data-target="youtube">YouTube</a>
-    <a class="nav-link" data-target="dashboard">Dashboard</a>
+    <a class="nav-link" data-target="about">About Us</a>
+    <a class="nav-link" data-target="courses">Programs</a>
+    <a class="nav-link" data-target="admission">Admission</a>
     <a class="nav-link" data-target="contact">Contact</a>
 </nav>
 
 <section id="home" class="active">
-    <h2>Welcome!</h2>
-    <p>Hello! I’m Belay Kassanew. I teach programming, health science, and IoT projects. Explore courses, videos, and projects below!</p>
+    <h2>Welcome to Habesha Digital Academy</h2>
+    <p>We provide high-quality online education in Software Development, Health Sciences, English Language, Grade 12 Entrance Preparation, Remedial Programs, and Cybersecurity training.</p>
 </section>
 
 <section id="about">
-    <h2>About Me</h2>
-    <div class="about-box">
-        <img src="belay.jpg" alt="Belay Kassanew">
-        <p>I’m a Computer Science and Public Health student. I love programming, IoT, and helping students learn online. I work on research projects and software systems that combine health and technology.</p>
-    </div>
+    <h2>About Us</h2>
+    <p>Habesha Digital Academy is an Ethiopian online learning platform dedicated to empowering students through affordable and accessible digital education. We support Freshman students, Remedial learners, and Grade 12 entrance exam candidates.</p>
 </section>
 
-<section id="learning">
-    <h2>Learning Courses</h2>
+<section id="courses">
+    <h2>Our Programs</h2>
     <div class="learning-box">
         <div class="course-card">
-            <h3>Health Science</h3>
-            <p>Epidemiology, public health, medical statistics, and projects.</p>
+            <h3>Software & Computer Science</h3>
+            <p>Programming, Web Development, Python, JavaScript, Cybersecurity, and more.</p>
         </div>
         <div class="course-card">
-            <h3>Programming & CS</h3>
-            <p>Python, JavaScript, Flask, HTML/CSS, IoT projects.</p>
+            <h3>Health Sciences</h3>
+            <p>Public Health, Epidemiology, Medical Statistics, and research training.</p>
         </div>
         <div class="course-card">
-            <h3>Remedial & Freshman</h3>
-            <p>Structured notes and tutorials for beginners.</p>
+            <h3>Freshman & Remedial Programs</h3>
+            <p>Foundation courses to strengthen academic skills.</p>
         </div>
         <div class="course-card">
-            <h3>Grade 12 & Pre-University</h3>
-            <p>Advanced topics, quizzes, and exam preparation.</p>
+            <h3>Grade 12 Entrance Exam Prep</h3>
+            <p>Mock exams, tutorials, and university entrance preparation.</p>
+        </div>
+        <div class="course-card">
+            <h3>English Language (ESL)</h3>
+            <p>Academic English, communication skills, and exam preparation.</p>
         </div>
     </div>
 </section>
 
-<section id="youtube">
-    <h2>My YouTube Video</h2>
-    <div class="youtube-section">
-        <iframe src="https://www.youtube.com/embed/DHAD3JuETfs" frameborder="0" allowfullscreen></iframe>
-    </div>
-</section>
-
-<section id="dashboard">
-    <h2>Student Dashboard</h2>
-    <div class="login-register">
-        <div>
-            <h3>Login</h3>
-            <form>
-                <input type="text" placeholder="Username">
-                <input type="password" placeholder="Password">
-                <button>Login</button>
-            </form>
-        </div>
-        <div>
-            <h3>Register</h3>
-            <form>
-                <input type="text" placeholder="Full Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Register</button>
-            </form>
-        </div>
-    </div>
+<section id="admission">
+    <h2>Student Registration</h2>
+    <form>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email Address">
+        <input type="text" placeholder="Program Interested In">
+        <button>Apply Now</button>
+    </form>
 </section>
 
 <section id="contact">
-    <h2>Contact Me</h2>
+    <h2>Contact Us</h2>
     <form>
         <input type="text" placeholder="Your Name">
         <input type="email" placeholder="Your Email">
@@ -269,28 +188,21 @@ footer {
 </section>
 
 <footer>
-    <p>© 2025 Belay Kassanew — All Rights Reserved</p>
+    <p>© 2026 Habesha Digital Academy | Ethiopia</p>
 </footer>
 
-</div> <!-- End container -->
+</div>
 
 <script>
-// Section toggle
 const links = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section');
 
 links.forEach(link => {
     link.addEventListener('click', () => {
-        // Remove active from all links
         links.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
-
-        // Hide all sections
         sections.forEach(s => s.classList.remove('active'));
-
-        // Show target section
-        const target = link.dataset.target;
-        document.getElementById(target).classList.add('active');
+        document.getElementById(link.dataset.target).classList.add('active');
     });
 });
 </script>
