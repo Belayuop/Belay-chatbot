@@ -5,205 +5,445 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Habesha Digital Academy</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
 <style>
+/* ===== GENERAL ===== */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(120deg,#1f4037,#99f2c8);
-    color: #333;
+    background: #fff;
+    color: #222;
+    scroll-behavior: smooth;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 20px 30px;
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
 }
 
+/* ===== HEADER ===== */
 header {
     text-align: center;
-    padding: 40px 20px;
-    color: white;
+    padding: 60px 20px;
+    background: #f0fff0; /* light clean green */
+    border-bottom: 2px solid #00a86b;
 }
 
 header h1 {
+    font-size: 3rem;
     margin: 0;
-    font-size: 2.8rem;
+    color: #006400;
 }
 
 header p {
     font-size: 1.2rem;
+    color: #008000;
+    margin-top: 10px;
 }
 
-/* NAVIGATION */
+/* ===== NAVIGATION ===== */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #14532d;
-    border-radius: 10px;
-    margin-bottom: 30px;
+    background: #006400;
     flex-wrap: wrap;
 }
 
 nav a {
     color: white;
     text-decoration: none;
-    padding: 15px 25px;
+    padding: 12px 25px;
+    margin: 5px;
     font-weight: bold;
-    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
 nav a:hover, nav a.active {
-    background-color: #22c55e;
-    border-radius: 8px;
+    background: #00a86b;
 }
 
-/* SECTIONS */
+/* ===== SECTIONS ===== */
 section {
-    display: none;
-    margin-bottom: 50px;
-    padding: 30px;
-    border-radius: 15px;
-    background: #fff;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    padding: 60px 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
 }
 
-section.active {
-    display: block;
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* COURSES */
-.course-card {
-    background: #ecfdf5;
-    padding: 20px;
-    margin: 15px;
-    border-left: 5px solid #16a34a;
-    border-radius: 12px;
-    flex: 1 1 250px;
+h2 {
+    color: #006400;
+    border-bottom: 2px solid #00a86b;
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-bottom: 25px;
 }
 
-.learning-box {
+/* ===== COURSE FILTER ===== */
+.course-filter {
+    margin-bottom: 30px;
+}
+
+.course-filter button {
+    background: #00a86b;
+    color: #fff;
+    border: none;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.course-filter button.active, .course-filter button:hover {
+    background: #006400;
+}
+
+/* ===== COURSE CARD ===== */
+.course-container {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
 }
 
-/* FORMS */
+.course-card {
+    background: #f9fff9;
+    border: 1px solid #e0e0e0;
+    border-left: 6px solid #00a86b;
+    border-radius: 10px;
+    padding: 20px;
+    width: calc(33% - 20px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.course-card h3 {
+    margin-top: 0;
+    color: #006400;
+}
+
+/* ===== LOGIN/REGISTER ===== */
+.login-register {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.login-register div {
+    flex: 1 1 400px;
+    background: #f9fff9;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
 form input, form textarea {
     width: 100%;
     padding: 12px;
     margin-bottom: 15px;
-    border-radius: 10px;
+    border-radius: 8px;
     border: 1px solid #bbb;
 }
 
 form button {
-    background: #16a34a;
+    width: 100%;
+    background: #00a86b;
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 12px;
+    font-size: 1rem;
     border-radius: 25px;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
+form button:hover {
+    background: #006400;
+}
+
+/* ===== FOOTER ===== */
 footer {
     text-align: center;
-    padding: 20px;
-    background-color: #14532d;
+    padding: 30px 20px;
+    background: #006400;
     color: white;
-    border-radius: 15px 15px 0 0;
+    margin-top: 50px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width: 992px){
+    .course-card { width: calc(50% - 20px); }
+}
+@media(max-width: 600px){
+    .course-card { width: 100%; }
+    nav { flex-direction: column; }
 }
 </style>
 </head>
-
 <body>
-<div class="container">
 
+<div class="container">
 <header>
     <h1>Habesha Digital Academy</h1>
-    <p>Empowering Minds Through Digital Education in Ethiopia</p>
+    <p>Learn Computer Science, Health, Social Science & More</p>
 </header>
 
 <nav>
-    <a class="nav-link active" data-target="home">Home</a>
-    <a class="nav-link" data-target="about">About Us</a>
-    <a class="nav-link" data-target="courses">Programs</a>
-    <a class="nav-link" data-target="admission">Admission</a>
-    <a class="nav-link" data-target="contact">Contact</a>
+    <a href="#home" class="active" data-target="home">Home</a>
+    <a href="#courses" data-target="courses">Courses</a>
+    <a href="#dashboard" data-target="dashboard">Dashboard</a>
+    <a href="#contact" data-target="contact">Contact</a>
 </nav>
 
-<section id="home" class="active">
-    <h2>Welcome to Habesha Digital Academy</h2>
-    <p>We provide high-quality online education in Software Development, Health Sciences, English Language, Grade 12 Entrance Preparation, Remedial Programs, and Cybersecurity training.</p>
-</section>
-
-<section id="about">
-    <h2>About Us</h2>
-    <p>Habesha Digital Academy is an Ethiopian online learning platform dedicated to empowering students through affordable and accessible digital education. We support Freshman students, Remedial learners, and Grade 12 entrance exam candidates.</p>
+<section id="home">
+    <h2>Welcome!</h2>
+    <p>Explore courses by category and start learning immediately. Use filters to find courses in Computer Science, Health Science, Social Science, Grade 12, Remedial, or Short Courses.</p>
 </section>
 
 <section id="courses">
-    <h2>Our Programs</h2>
-    <div class="learning-box">
-        <div class="course-card">
-            <h3>Software & Computer Science</h3>
-            <p>Programming, Web Development, Python, JavaScript, Cybersecurity, and more.</p>
+    <h2>Courses</h2>
+
+    <!-- COURSE FILTER -->
+    <div class="course-filter">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="cs">Computer Science</button>
+        <button class="filter-btn" data-category="health">Health Science</button>
+        <button class="filter-btn" data-category="social">Social Science</button>
+        <button class="filter-btn" data-category="grade12">Grade 12</button>
+        <button class="filter-btn" data-category="remedial">Remedial</button>
+        <button class="filter-btn" data-category="short">Short Courses</button>
+    </div>
+
+    <!-- COURSES -->
+    <div class="course-container">
+        <!-- Computer Science -->
+        <div class="course-card cs">
+            <h3>Python Programming</h3>
+            <p>Beginner to Advanced • 4-6 hours/week</p>
         </div>
-        <div class="course-card">
-            <h3>Health Sciences</h3>
-            <p>Public Health, Epidemiology, Medical Statistics, and research training.</p>
+        <div class="course-card cs">
+            <h3>Java Programming</h3>
+            <p>Intermediate • 4-5 hours/week</p>
         </div>
-        <div class="course-card">
-            <h3>Freshman & Remedial Programs</h3>
-            <p>Foundation courses to strengthen academic skills.</p>
+        <div class="course-card cs">
+            <h3>HTML & CSS</h3>
+            <p>Beginner • 3-4 hours/week</p>
         </div>
-        <div class="course-card">
-            <h3>Grade 12 Entrance Exam Prep</h3>
-            <p>Mock exams, tutorials, and university entrance preparation.</p>
+        <div class="course-card cs">
+            <h3>C++ Programming</h3>
+            <p>Intermediate • 5 hours/week</p>
         </div>
-        <div class="course-card">
-            <h3>English Language (ESL)</h3>
-            <p>Academic English, communication skills, and exam preparation.</p>
+
+        <!-- Health Science -->
+        <div class="course-card health">
+            <h3>Human Anatomy</h3>
+            <p>4-6 hours/week</p>
+        </div>
+        <div class="course-card health">
+            <h3>Physiology</h3>
+            <p>4-5 hours/week</p>
+        </div>
+        <div class="course-card health">
+            <h3>Biochemistry</h3>
+            <p>3-5 hours/week</p>
+        </div>
+        <div class="course-card health">
+            <h3>Pathology</h3>
+            <p>4-6 hours/week</p>
+        </div>
+
+        <!-- Social Science -->
+        <div class="course-card social">
+            <h3>History of Ethiopia</h3>
+            <p>3-4 hours/week</p>
+        </div>
+        <div class="course-card social">
+            <h3>Geography</h3>
+            <p>3-5 hours/week</p>
+        </div>
+        <div class="course-card social">
+            <h3>English Literature</h3>
+            <p>3-4 hours/week</p>
+        </div>
+        <div class="course-card social">
+            <h3>Economics</h3>
+            <p>4 hours/week</p>
+        </div>
+
+        <!-- Grade 12 -->
+        <div class="course-card grade12">
+            <h3>Ethiopian Entrance Exam Prep</h3>
+            <p>Full preparation • 6-8 hours/week</p>
+        </div>
+
+        <!-- Remedial -->
+        <div class="course-card remedial">
+            <h3>Mathematics</h3>
+            <p>2-4 hours/week</p>
+        </div>
+        <div class="course-card remedial">
+            <h3>Biology</h3>
+            <p>2-4 hours/week</p>
+        </div>
+        <div class="course-card remedial">
+            <h3>Chemistry</h3>
+            <p>2-4 hours/week</p>
+        </div>
+        <div class="course-card remedial">
+            <h3>Physics</h3>
+            <p>2-4 hours/week</p>
+        </div>
+        <div class="course-card remedial">
+            <h3>Agriculture</h3>
+            <p>2-3 hours/week</p>
+        </div>
+
+        <!-- Short Courses -->
+        <div class="course-card short">
+            <h3>Cybersecurity Basics</h3>
+            <p>2-3 hours/week</p>
+        </div>
+        <div class="course-card short">
+            <h3>Data Science Fundamentals</h3>
+            <p>3-4 hours/week</p>
+        </div>
+        <div class="course-card short">
+            <h3>AI and Machine Learning</h3>
+            <p>4-5 hours/week</p>
         </div>
     </div>
 </section>
 
-<section id="admission">
-    <h2>Student Registration</h2>
-    <form>
-        <input type="text" placeholder="Full Name">
-        <input type="email" placeholder="Email Address">
-        <input type="text" placeholder="Program Interested In">
-        <button>Apply Now</button>
-    </form>
+<section id="dashboard">
+    <h2>Student Dashboard</h2>
+    <div class="login-register">
+        <div>
+            <h3>Login</h3>
+            <form id="loginForm">
+                <input type="text" id="loginUser" placeholder="Username" required>
+                <input type="password" id="loginPass" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <p id="loginStatus"></p>
+        </div>
+        <div>
+            <h3>Register</h3>
+            <form id="registerForm">
+                <input type="text" id="regName" placeholder="Full Name" required>
+                <input type="email" id="regEmail" placeholder="Email" required>
+                <input type="password" id="regPass" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            <p id="regStatus"></p>
+        </div>
+    </div>
 </section>
 
 <section id="contact">
     <h2>Contact Us</h2>
-    <form>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea placeholder="Your Message"></textarea>
-        <button>Send Message</button>
+    <form id="contactForm">
+        <input type="text" id="contactName" placeholder="Your Name" required>
+        <input type="email" id="contactEmail" placeholder="Your Email" required>
+        <textarea id="contactMessage" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+        <p id="contactStatus"></p>
     </form>
 </section>
 
 <footer>
-    <p>© 2026 Habesha Digital Academy | Ethiopia</p>
+    <p>© 2026 Habesha Digital Academy. All rights reserved.</p>
 </footer>
 
 </div>
 
 <script>
-const links = document.querySelectorAll('.nav-link');
+// ===== SMOOTH SCROLL & ACTIVE NAV =====
+const navLinks = document.querySelectorAll('nav a');
 const sections = document.querySelectorAll('section');
 
-links.forEach(link => {
-    link.addEventListener('click', () => {
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        sections.forEach(s => s.classList.remove('active'));
-        document.getElementById(link.dataset.target).classList.add('active');
+navLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById(link.dataset.target).scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
+});
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (pageYOffset >= sectionTop) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => link.classList.remove('active'));
+    document.querySelector(`nav a[data-target="${current}"]`)?.classList.add('active');
+});
+
+// ===== FADE IN SECTIONS =====
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting) entry.target.classList.add('visible');
+    });
+}, { threshold: 0.2 });
+sections.forEach(section => observer.observe(section));
+
+// ===== COURSE FILTER =====
+const filterButtons = document.querySelectorAll('.filter-btn');
+const courseCards = document.querySelectorAll('.course-card');
+
+filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const category = btn.dataset.category;
+        courseCards.forEach(card => {
+            if(category === 'all' || card.classList.contains(category)){
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// ===== LOGIN/REGISTER MOCK =====
+const loginForm = document.getElementById('loginForm');
+const loginStatus = document.getElementById('loginStatus');
+loginForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = document.getElementById('loginUser').value;
+    loginStatus.textContent = `Welcome back, ${user}!`;
+    loginStatus.style.color = "#006400";
+    loginForm.reset();
+});
+
+const registerForm = document.getElementById('registerForm');
+const regStatus = document.getElementById('regStatus');
+registerForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const user = document.getElementById('regName').value;
+    regStatus.textContent = `Registration successful! Welcome, ${user}.`;
+    regStatus.style.color = "#006400";
+    registerForm.reset();
+});
+
+// ===== CONTACT FORM MOCK =====
+const contactForm = document.getElementById('contactForm');
+const contactStatus = document.getElementById('contactStatus');
+contactForm.addEventListener('submit', e => {
+    e.preventDefault();
+    contactStatus.textContent = "Message sent! We'll get back to you soon.";
+    contactStatus.style.color = "#006400";
+    contactForm.reset();
 });
 </script>
 
