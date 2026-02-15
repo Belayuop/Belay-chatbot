@@ -1,61 +1,94 @@
-// SMOOTH SCROLL
-document.querySelectorAll('nav a').forEach(link => {
-    link.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(link.getAttribute('href'));
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-});
-
-// CONTACT FORM
-const form = document.getElementById('contactForm');
-const status = document.getElementById('formStatus');
-
-if (form) {
-    form.addEventListener('submit', async e => {
-        e.preventDefault();
-        status.textContent = "Sending...";
-        status.style.color = "#27ae60";
-
-        const data = {
-            name: form.name.value.trim(),
-            email: form.email.value.trim(),
-            message: form.message.value.trim()
-        };
-
-        if (!data.name || !data.email || !data.message) {
-            status.textContent = "Please fill all fields!";
-            status.style.color = "red";
-            return;
-        }
-
-        try {
-            const res = await fetch('/contact', {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(data)
-            });
-            const result = await res.json();
-            if (result.status === "success") {
-                status.textContent = "Message sent!";
-                status.style.color = "green";
-                form.reset();
-            } else {
-                status.textContent = "Error sending!";
-                status.style.color = "red";
-            }
-        } catch (err) {
-            status.textContent = "Error sending!";
-            status.style.color = "red";
-        }
-    });
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #f8f8f8;
+    color: #222;
+    scroll-behavior: smooth;
 }
 
-// ANIMATION ON SCROLL
-const sections = document.querySelectorAll('.section');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if(entry.isIntersecting) entry.target.classList.add('visible');
-    });
-}, { threshold: 0.2 });
-sections.forEach(section => observer.observe(section));
+header {
+    text-align: center;
+    padding: 60px 20px;
+    background: #8B0000; /* Harvard Crimson */
+    color: white;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    letter-spacing: 1px;
+}
+
+header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #5a0000;
+    padding: 10px 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 25px;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    background-color: #a00000;
+    transition: 0.3s ease;
+}
+
+section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: auto;
+    border-bottom: 1px solid #ddd;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    color: #8B0000;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.course-card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-left: 6px solid #8B0000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+button {
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #a00000;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #5a0000;
+    color: white;
+}
