@@ -1,183 +1,123 @@
-/* ===== GENERAL SETTINGS ===== */
+/* ===== GENERAL ===== */
 body {
     margin: 0;
-    font-family: 'Georgia', serif;
-    background: #f8f8f8;
+    font-family: 'Roboto', sans-serif;
+    background: #fff;
     color: #222;
     scroll-behavior: smooth;
-    line-height: 1.6;
+}
+
+.container {
+    max-width: 1300px;
+    margin: auto;
+    padding: 20px;
 }
 
 /* ===== HEADER ===== */
 header {
     text-align: center;
-    padding: 80px 20px;
-    background: #8B0000; /* Harvard Crimson */
-    color: white;
+    padding: 60px 20px;
+    background: #f0fff0; /* light green */
+    border-bottom: 2px solid #00a86b;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 3rem;
-    letter-spacing: 2px;
-    font-weight: bold;
-}
+header h1 { font-size: 3rem; margin: 0; color: #006400; }
+header p { font-size: 1.2rem; color: #008000; margin-top: 10px; }
 
-header p {
-    font-size: 1.3rem;
-    opacity: 0.9;
-    margin-top: 10px;
-}
-
-/* ===== NAVIGATION ===== */
+/* ===== NAV ===== */
 nav {
     display: flex;
     justify-content: center;
-    background-color: #5a0000;
-    padding: 12px 0;
+    background: #006400;
     flex-wrap: wrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
-
 nav a {
-    color: #fff;
+    color: white;
     text-decoration: none;
-    padding: 15px 28px;
+    padding: 12px 25px;
+    margin: 5px;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    transition: all 0.3s ease;
     border-radius: 5px;
+    transition: all 0.3s ease;
 }
-
-nav a:hover,
-nav a.active {
-    background-color: #a00000;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
+nav a:hover, nav a.active { background: #00a86b; }
 
 /* ===== SECTIONS ===== */
 section {
     padding: 60px 20px;
-    max-width: 1200px;
-    margin: auto;
     opacity: 0;
     transform: translateY(50px);
     transition: all 0.8s ease;
 }
-
 section.visible {
     opacity: 1;
     transform: translateY(0);
 }
-
-/* ===== HEADINGS ===== */
 h2 {
-    color: #8B0000;
-    margin-bottom: 25px;
-    font-size: 2rem;
-    border-bottom: 2px solid #6a006a; /* subtle purple accent */
+    color: #006400;
+    border-bottom: 2px solid #00a86b;
     display: inline-block;
     padding-bottom: 5px;
+    margin-bottom: 25px;
 }
+
+/* ===== COURSE FILTER ===== */
+.course-filter { margin-bottom: 30px; }
+.course-filter button {
+    background: #00a86b; color: #fff; border: none;
+    padding: 10px 18px; margin: 5px; border-radius: 5px;
+    cursor: pointer; transition: all 0.3s;
+}
+.course-filter button.active, .course-filter button:hover { background: #006400; }
 
 /* ===== COURSE CARDS ===== */
+.course-container { display: flex; flex-wrap: wrap; gap: 20px; }
 .course-card {
-    background: #fff;
-    padding: 25px 20px;
-    margin: 15px 0;
-    border-left: 6px solid #6a006a; /* purple accent border */
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
-}
-
-.course-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-/* ===== BUTTONS ===== */
-button {
-    background: #8B0000;
-    color: white;
-    border: none;
-    padding: 12px 28px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1rem;
-    border-radius: 25px;
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background: #a00000;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
-}
-
-/* ===== FORMS ===== */
-form input,
-form textarea {
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 18px;
+    background: #f9fff9;
+    border: 1px solid #e0e0e0;
+    border-left: 6px solid #00a86b;
     border-radius: 10px;
-    border: 1px solid #bbb;
-    font-size: 1rem;
+    padding: 20px;
+    width: calc(33% - 20px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
 }
-
-form input:focus,
-form textarea:focus {
-    outline: none;
-    border-color: #6a006a; /* purple accent */
-    box-shadow: 0 0 6px rgba(106,0,106,0.3);
+.course-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
+.course-card h3 { margin-top: 0; color: #006400; }
+
+/* ===== LOGIN/REGISTER ===== */
+.login-register { display: flex; flex-wrap: wrap; gap: 20px; }
+.login-register div {
+    flex: 1 1 400px;
+    background: #f9fff9;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+form input, form textarea {
+    width: 100%; padding: 12px; margin-bottom: 15px;
+    border-radius: 8px; border: 1px solid #bbb;
+}
+form button {
+    width: 100%; background: #00a86b; color: white;
+    border: none; padding: 12px; font-size: 1rem;
+    border-radius: 25px; cursor: pointer; transition: all 0.3s;
+}
+form button:hover { background: #006400; }
 
 /* ===== FOOTER ===== */
-footer {
-    text-align: center;
-    padding: 40px 20px;
-    background-color: #5a0000;
-    color: white;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-}
+footer { text-align: center; padding: 30px 20px; background: #006400; color: white; margin-top: 50px; }
 
-/* ===== COURSE LIST TABLE ===== */
-.course-list {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 40px;
+/* ===== SOCIAL LINKS ===== */
+.social-links a {
+    display: inline-block; margin: 5px 10px; text-decoration: none;
+    color: #006400; font-weight: bold;
 }
-
-.course-list th,
-.course-list td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #ddd;
-}
-
-.course-list th {
-    background: #f2f2f2;
-    color: #8B0000;
-    text-align: left;
-}
-
-.course-list tr:hover {
-    background: #f5f0ff; /* light purple highlight */
-}
+.social-links a:hover { color: #00a86b; }
 
 /* ===== RESPONSIVE ===== */
-@media(max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-
-    .course-card {
-        margin: 20px auto;
-    }
-
-    .course-list th, .course-list td {
-        padding: 10px;
-    }
-}
+@media(max-width: 992px){ .course-card { width: calc(50% - 20px); } }
+@media(max-width: 600px){ .course-card { width: 100%; } nav { flex-direction: column; } }
